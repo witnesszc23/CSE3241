@@ -35,12 +35,22 @@ if ($conn->connect_error) {
             }
 
             let remaining = total - allocated + parseFloat(slider.value);
-            slider.setAttribute('max', remaining);
+            slider.setAttribute('max', total);
             label.innerText = slider.value;
 
             if (allocated > total) {
+                // alert("Total allocation exceeds total amount!");
                 slider.value = parseFloat(slider.value) - (allocated - total); // Reset to valid value
                 label.innerText = slider.value;
+            }
+        }
+
+        function resetSliders() {
+            let total = parseFloat(document.getElementById("total_amount").value) || 0;
+            let sliders = document.getElementsByClassName("slider");
+
+            for (let slider of sliders) {
+                slider.setAttribute('max', total);
             }
         }
     </script>
@@ -49,7 +59,7 @@ if ($conn->connect_error) {
     <h1>Stock Profit/Loss Calculator</h1>
     <form action="" method="post">
         <label>Total Amount ($):</label>
-        <input type="number" id="total_amount" name="total_amount" required><br><br>
+        <input type="number" id="total_amount" name="total_amount" required oninput="resetSliders()"><br><br>
 
         <?php
         $stocks = ['AMZN', 'AAPL', 'GOOGL', 'META'];
