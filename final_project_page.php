@@ -28,17 +28,18 @@ if ($conn->connect_error) {
         function updateSliders(slider, label) {
             let total = parseFloat(document.getElementById("total_amount").value) || 0;
             let sliders = document.getElementsByClassName("slider");
-            let remaining = total;
+            let allocated = 0;
 
             for (let s of sliders) {
-                remaining -= parseFloat(s.value);
+                allocated += parseFloat(s.value);
             }
 
+            let remaining = total - allocated + parseFloat(slider.value);
+            slider.setAttribute('max', remaining);
             label.innerText = slider.value;
 
-            if (remaining < 0) {
-                // alert("Total allocation exceeds total amount!");
-                slider.value = parseFloat(slider.value) + remaining; // Reset to valid value
+            if (allocated > total) {
+                slider.value = parseFloat(slider.value) - (allocated - total); // Reset to valid value
                 label.innerText = slider.value;
             }
         }
@@ -54,7 +55,7 @@ if ($conn->connect_error) {
         $stocks = ['AMZN', 'AAPL', 'GOOGL', 'META'];
         foreach ($stocks as $stock) {
             echo "<label>{$stock}:</label> 
-                <input type='range' class='slider' name='{$stock}_allocation' min='0' max='100' oninput='updateSliders(this, document.getElementById(\"label_{$stock}\"))'>
+                <input type='range' class='slider' name='{$stock}_allocation' min='0' value='0' oninput='updateSliders(this, document.getElementById(\"label_{$stock}\"))'>
                 <span id='label_{$stock}'>0</span><br>
                 Buy Date: <input type='date' name='{$stock}_buy_date' required> 
                 Sell Date: <input type='date' name='{$stock}_sell_date' required><br><br>";
