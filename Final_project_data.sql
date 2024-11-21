@@ -1,4 +1,4 @@
-CREATE DATABASE finalproject;
+-- CREATE DATABASE finalproject;
 USE finalproject;
 
 CREATE TABLE IF NOT EXISTS stock_data (
