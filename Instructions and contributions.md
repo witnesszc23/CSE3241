@@ -10,5 +10,7 @@ We limit the date since the dataset only provides stocks information from 1/2/20
 
 Contribution to the project(Sort by initials of last names):
 Zichen Hu: Distributed work and started a zoom meeting sharing information of the project. Making a detailed plan and design a blueprint for the webpage. Creating the sql codes and in charge of data import. Testing php files, finding errors in the calculation process and give suggestions to different versions of it. Summarize all the codes and write instruction document. Doing some last-minute modification.
-Zeyu Huang: In charge of improving the php codes, sucessfully solves the problems with the dates. Limiting the dates to the ones in the dataset and making sure the selling date is after the buying date. Add an input bracket besides the slidebar to allow users' more accurate input. 
+
+Zeyu Huang: In charge of improving the php codes, sucessfully solves the problems with the dates. Limiting the dates to the ones in the dataset and making sure the selling date is after the buying date. Add an input bracket besides the slidebar to allow users' more accurate input.
+
 Haozhe Li: In charge of createing most of the php codes, creating a calculation method for the total gain/loss of all the stocks and continue to improve it. Come up with the slidebar option and the base codes for date import. Consistently improving the php codes and make the final version of it.
