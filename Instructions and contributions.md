@@ -9,6 +9,7 @@ PS:
 We limit the date since the dataset only provides stocks information from 1/2/2024 to 9/30/2024. If you use weekends' dates to test our code, it will give you a prompt to choose the valid dates. When you are losing money, the tax in the calculation process will always be 0 since it is not practical to add tax on your loss.
 
 Contribution to the project(Sort by initials of last names):
+
 Zichen Hu: Distributed work and started a zoom meeting sharing information of the project. Making a detailed plan and design a blueprint for the webpage. Creating the sql codes and in charge of data import. Testing php files, finding errors in the calculation process and give suggestions to different versions of it. Summarize all the codes and write instruction document. Doing some last-minute modification.
 
 Zeyu Huang: In charge of improving the php codes, sucessfully solves the problems with the dates. Limiting the dates to the ones in the dataset and making sure the selling date is after the buying date. Add an input bracket besides the slidebar to allow users' more accurate input.
