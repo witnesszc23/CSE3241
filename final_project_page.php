@@ -40,7 +40,6 @@ if ($conn->connect_error) {
             input.value = slider.value; // Synchronize input box with slider
 
             if (allocated > total) {
-                // alert("Total allocation exceeds total amount!");
                 slider.value = parseFloat(slider.value) - (allocated - total); // Reset to valid value
                 label.innerText = slider.value;
                 input.value = slider.value; // Update input box
@@ -70,13 +69,12 @@ if ($conn->connect_error) {
             slider.value = input.value; // Synchronize
 
             if (allocated > total) {
-                // alert("Total allocation exceeds total amount!");
                 input.value = parseFloat(input.value) - (allocated - total); // Reset to valid value
                 label.innerText = input.value;
                 slider.value = input.value; // Update slider
             }
         }
-            
+
         function resetInputs(totalAmountInput) {
             const totalAmount = parseFloat(totalAmountInput.value) || 0;
             const moneyInputs = document.querySelectorAll(".money-input");
@@ -110,7 +108,6 @@ if ($conn->connect_error) {
         }
 
         document.addEventListener("DOMContentLoaded", initializeSliderDateBinding);
-
     </script>
 </head>
 <body>
@@ -142,6 +139,10 @@ if ($conn->connect_error) {
         $brokerage_fee = 0.01;
         $irs_tax = 0.20;
 
+        echo "<h2>Calculation Summary</h2>";
+        echo "<p>Brokerage Fee: " . ($brokerage_fee * 100) . "%</p>";
+        echo "<p>IRS Tax: " . ($irs_tax * 100) . "%</p><br>";
+
         $total_profit = 0;
 
         foreach ($stocks as $stock) {
@@ -158,8 +159,7 @@ if ($conn->connect_error) {
             }
             
             if (strtotime($sell_date) < strtotime($buy_date)) {
-                echo "<p>Error: sell date must be at least one day after the purchase
-                    date for $stock.</p>";
+                echo "<p>Error: sell date must be at least one day after the purchase date for $stock.</p>";
                 continue;
             }
 
@@ -183,9 +183,13 @@ if ($conn->connect_error) {
 
                 $total_profit += $profit_after_tax;
 
-                echo "<p>$stock: 
-                    Bought at $buy_price, Sold at $sell_price, 
-                    Net Profit (After Tax): $" . number_format($profit_after_tax, 2) . "</p>";
+                echo "<h3>$stock</h3>";
+                echo "<p>Number of Shares: " . number_format($num_shares, 4) . " = ($) $investment / $buy_price</p>";
+                echo "<p>Selling Price (net of brokerage fee): $" . number_format($selling_price_net, 2) . " = ($sell_price * (1 - $brokerage_fee)) * $num_shares</p>";
+                echo "<p>Profit Before Tax: $" . number_format($profit_before_tax, 2) . " = $selling_price_net - $investment</p>";
+                echo "<p>Tax Amount: $" . number_format($tax_amount, 2) . " = $profit_before_tax * $irs_tax</p>";
+                echo "<p>Net Gain or Loss: $" . number_format($profit_after_tax, 2) . " = $profit_before_tax - $tax_amount</p>";
+            
             } else {
                 echo "<p>Error: Stock price data for $stock on selected dates is unavailable.</p>";
             }
