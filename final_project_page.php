@@ -173,20 +173,19 @@ if ($conn->connect_error) {
                 $buy_price = floatval($buy_result->fetch_assoc()['stock_price']);
                 $sell_price = floatval($sell_result->fetch_assoc()['stock_price']);
 
-                $investment = $total_amount * ($allocation / 100);
-                $num_shares = $investment / $buy_price;
+                $num_shares = $allocation / $buy_price;
 
                 $selling_price_net = $sell_price * (1 - $brokerage_fee) * $num_shares;
-                $profit_before_tax = $selling_price_net - $investment;
+                $profit_before_tax = $selling_price_net - $allocation;
                 $tax_amount = $profit_before_tax > 0 ? $profit_before_tax * $irs_tax : 0;
                 $profit_after_tax = $profit_before_tax - $tax_amount;
 
                 $total_profit += $profit_after_tax;
 
                 echo "<h3>$stock</h3>";
-                echo "<p>Number of Shares: " . number_format($num_shares, 4) . " = ($) $investment / $buy_price</p>";
+                echo "<p>Number of Shares: " . number_format($num_shares, 4) . " = ($) $allocation / $buy_price</p>";
                 echo "<p>Selling Price (net of brokerage fee): $" . number_format($selling_price_net, 2) . " = ($sell_price * (1 - $brokerage_fee)) * $num_shares</p>";
-                echo "<p>Profit Before Tax: $" . number_format($profit_before_tax, 2) . " = $selling_price_net - $investment</p>";
+                echo "<p>Profit Before Tax: $" . number_format($profit_before_tax, 2) . " = $selling_price_net - $allocation</p>";
                 echo "<p>Tax Amount: $" . number_format($tax_amount, 2) . " = $profit_before_tax * $irs_tax</p>";
                 echo "<p>Net Gain or Loss: $" . number_format($profit_after_tax, 2) . " = $profit_before_tax - $tax_amount</p>";
             
