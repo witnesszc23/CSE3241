@@ -57,13 +57,24 @@ if ($conn->connect_error) {
 
         function updateInput(input, slider, label) {
             let total = parseFloat(document.getElementById("total_amount").value) || 0;
+            let moneyInputs = document.getElementsByClassName("money-input");
+            let allocated = 0;
 
-            if (parseFloat(input.value) > total) {
-                input.value = total; // Cap at total amount
+            for (let i of moneyInputs) {
+                allocated += parseFloat(i.value);
             }
 
-            slider.value = input.value; // Synchronize slider with input box
-            label.innerText = input.value; // Update label
+            let remaining = total - allocated + parseFloat(input.value);
+            input.setAttribute('max', total);
+            label.innerText = input.value;
+            slider.value = input.value; // Synchronize
+
+            if (allocated > total) {
+                // alert("Total allocation exceeds total amount!");
+                input.value = parseFloat(input.value) - (allocated - total); // Reset to valid value
+                label.innerText = input.value;
+                slider.value = input.value; // Update slider
+            }
         }
             
         function resetInputs(totalAmountInput) {
@@ -115,7 +126,7 @@ if ($conn->connect_error) {
                 <input type='range' class='slider' name='{$stock}_allocation' min='0' value='0' 
                 oninput='updateSliders(document.getElementById(\"{$stock}_input\"),  this, document.getElementById(\"label_{$stock}\"))'>
                 <span id='label_{$stock}'>0</span><br>
-                <input type='number' id='{$stock}_input' min='0' value='0' style='width: 70px;' 
+                <input type='number' class='money-input'  id='{$stock}_input' min='0' value='0' style='width: 70px;' 
                 oninput='updateInput(this, document.getElementsByName(\"{$stock}_allocation\")[0], document.getElementById(\"label_{$stock}\"))'>
                 Buy Date: <input type='date' name='{$stock}_buy_date' min='2024-01-02' max='2024-09-30'> 
                 Sell Date: <input type='date' name='{$stock}_sell_date' min='2024-01-02' max='2024-09-30'><br><br>";
