@@ -14,4 +14,4 @@ Zichen Hu: Distributed work and started a zoom meeting sharing information of th
 
 Zeyu Huang: In charge of improving the php codes, sucessfully solves the problems with the dates. Limiting the dates to the ones in the dataset and making sure the selling date is after the buying date. Add an input bracket besides the slidebar to allow users' more accurate input.
 
-Haozhe Li: In charge of createing most of the php codes, creating a calculation method for the total gain/loss of all the stocks and continue to improve it. Come up with the slidebar option and the base codes for date import. Consistently improving the php codes and make the final version of it.
+Haozhe Li: In charge of creating most of the php codes, creating a calculation method for the total gain/loss of all the stocks and continue to improve it. Come up with the slidebar option and the base codes for date import. Consistently improving the php codes and make the final version of it.
