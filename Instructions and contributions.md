@@ -1,8 +1,8 @@
 Instructions for installing and using our code:
-1. Copy all our files into your php directory(There is NO subfolder).
-2. Begin the project by installing the necessary tables and insert the relevant data into database using the sql codes.
-3. Start your php server and start evaluating.
-4. Input your fixed amount of money on the top of the webpage and then invest them in one to four stocks on a given date. You can do this through input values or using the slidebar.
+1. Copy all our files(4 csv files, 1 sql file, 1 php file)into your php directory(There is NO subfolder).
+2. Begin the project by installing the necessary tables and insert the relevant data into database using the sql codes. Here, we import our data using the command "load data infile", in order for you to test smoothly, we change the paths to our datasets as default ones like 'AMZN.csv'. You should be able to use them once you copied all of our files into your directory.
+3. Start your php server and start evaluating, our php file's name is "Final_project_page.php".
+4. Input your fixed amount of money on the top of the webpage and then invest them in one to four stocks on a given date. You can divide your money through inputting values or using the slidebar.
 5. After you are done with the investment, hit 'Calculate' and our website will show you a breakdown for your gain/loss.
    
 PS:
